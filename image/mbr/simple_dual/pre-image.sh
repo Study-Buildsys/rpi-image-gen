@@ -8,6 +8,7 @@ genimg_in=$2
 [[ -d "$fs" ]] || exit 0
 
 
+# [CLS] 在這裏用uuidgen產生random UUID
 # Generate pre-defined UUIDs
 BOOT_LABEL=$(uuidgen | sed 's/-.*//' | tr 'a-f' 'A-F')
 BOOT_UUID=$(echo "$BOOT_LABEL" | sed 's/^\(....\)\(....\)$/\1-\2/')
@@ -24,6 +25,7 @@ MKE2FS_ARGS_STR="-U $ROOT_UUID ${IGconf_fs_ext4_mkfs_args:-}"
 BTRFS_ARGS_STR="-U $ROOT_UUID ${IGconf_fs_btrfs_mkfs_args:-}"
 VFAT_ARGS_STR="-S $IGconf_device_sector_size -i $BOOT_LABEL ${IGconf_fs_vfat_mkfs_args:-}"
 
+# [CLS] uuid 寫到 genimage的 config , make filesystem的時候導入
 # Write genimage template
 cat genimage.cfg.in.$IGconf_image_rootfs_type | sed \
    -e "s|<IMAGE_DIR>|$IGconf_image_outputdir|g" \
