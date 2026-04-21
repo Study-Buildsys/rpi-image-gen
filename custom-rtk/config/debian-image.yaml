@@ -1,0 +1,19 @@
+# device:
+#   hostname: rtk-debian-image        # 填入您期望的設備主機名稱
+#   user1: root                    # 填入您期望的預設登入帳號名稱
+
+# 1. & 3. bdebstrap 區塊 (對應 IGconf_bdebstrap_...)
+# bdebstrap:
+#   architectures: arm64
+#   suite: bookworm
+
+# 2. apt 區塊 (對應 IGconf_apt_...)
+apt:
+  mirror: http://deb.debian.org/debian/
+
+# 4. & 5. layer 區塊 (對應 IGconf_layer_...)
+layer:
+  # 我建議您改用的 debian-bookworm-arm64-slim 或 debian-bookworm-arm64 這兩個分層
+  # base: bookworm-minbase
+  base: debian-bookworm-arm64
+  my_packages: debian-image-560
