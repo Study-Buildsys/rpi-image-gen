@@ -8,12 +8,15 @@
 #   suite: bookworm
 
 # 2. apt 區塊 (對應 IGconf_apt_...)
-apt:
-  mirror: http://deb.debian.org/debian/
+# apt:
+#   mirror: http://deb.debian.org/debian/
 
 # 4. & 5. layer 區塊 (對應 IGconf_layer_...)
 layer:
   # 我建議您改用的 debian-bookworm-arm64-slim 或 debian-bookworm-arm64 這兩個分層
   # base: bookworm-minbase
-  base: debian-bookworm-arm64
-  my_packages: debian-image-560
+  # base: debian-bookworm-arm64
+  # my_packages: debian-image-560
+  my_packages: dpkg-image-arm64-bookworm-560-latest
+  # "version" version most not found
+  # my_packages: dpkg-image-arm64-bookworm-560-version

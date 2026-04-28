@@ -1,17 +1,28 @@
-# Syntax: 
-# # METABEGIN
-# # X-Env-Layer-Name: <layer_name>
-# # METAEND
-# packages:
-#   - <package_name>
-
 # METABEGIN
-# X-Env-Layer-Name: debian-image-560
+# X-Env-Layer-Name: dpkg-image-arm64-bookworm-560-latest
+# X-Env-Layer-Desc: Generated from dpkg status arch=arm64 suite=bookworm backports=bookworm-backports
+# X-Env-Layer-Version: 1.0.0
 # METAEND
 
 mmdebstrap:
+  architectures:
+    - arm64
+
+  suite: bookworm
+
+  mirrors:
+    # Main Debian repository
+    - deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware
+    - deb http://deb.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
+    - deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware
+    # Backports
+    - deb http://deb.debian.org/debian bookworm-backports main
+
+    # Source statistics:
+    #   bookworm: 548 packages (primary)
+    #   bookworm-backports: 12 packages
+
   packages:
-    # from /var/lib/dpkg/status
     - adduser
     - adwaita-icon-theme
     - alsa-topology-conf
@@ -81,9 +92,9 @@ mmdebstrap:
     - ifupdown
     - imagemagick-6-common
     - init
+    - init-system-helpers
     - initramfs-tools
     - initramfs-tools-core
-    - init-system-helpers
     - iproute2
     - iputils-ping
     - isc-dhcp-client
@@ -103,15 +114,15 @@ mmdebstrap:
     - libasound2-data
     - libass9
     - libasyncns0
-    - libatk1.0-0
     - libatk-bridge2.0-0
+    - libatk1.0-0
     - libatspi2.0-0
     - libattr1
-    - libaudit1
     - libaudit-common
+    - libaudit1
     - libavahi-client3
-    - libavahi-common3
     - libavahi-common-data
+    - libavahi-common3
     - libavc1394-0
     - libavcodec59
     - libavfilter8
@@ -126,18 +137,18 @@ mmdebstrap:
     - libbs2b0
     - libbsd0
     - libbz2-1.0
+    - libc-bin
+    - libc-l10n
     - libc6
     - libcaca0
-    - libcairo2
     - libcairo-gobject2
+    - libcairo2
+    - libcap-ng0
     - libcap2
     - libcap2-bin
-    - libcap-ng0
-    - libc-bin
     - libcdparanoia0
     - libchromaprint1
     - libcjson1
-    - libc-l10n
     - libcodec2-1.0
     - libcolord2
     - libcom-err2
@@ -159,18 +170,18 @@ mmdebstrap:
     - libdeflate0
     - libdevmapper1.02.1
     - libdirectfb-1.7-7
-    - libdjvulibre21
     - libdjvulibre-text
-    - libdrm2
-    - libdrm-amdgpu1
-    - libdrm-common
+    - libdjvulibre21
+    - libdrm-amdgpu1/bookworm-backports
+    - libdrm-common/bookworm-backports
+    - libdrm2/bookworm-backports
     - libdv4
     - libdvdnav4
     - libdvdread8
     - libdw1
     - libedit2
+    - libegl-mesa0/bookworm-backports
     - libegl1
-    - libegl-mesa0
     - libelf1
     - libepoxy0
     - libevdev2
@@ -189,7 +200,7 @@ mmdebstrap:
     - libfreerdp2-2
     - libfreetype6
     - libfribidi0
-    - libgbm1
+    - libgbm1/bookworm-backports
     - libgcc-s1
     - libgcrypt20
     - libgdk-pixbuf-2.0-0
@@ -197,14 +208,14 @@ mmdebstrap:
     - libgdk-pixbuf2.0-common
     - libgfortran5
     - libgl1
-    - libgl1-mesa-dri
-    - libglapi-mesa
+    - libgl1-mesa-dri/bookworm-backports
+    - libglapi-mesa/bookworm-backports
     - libgles2
     - libglib2.0-0
     - libglib2.0-data
     - libglvnd0
+    - libglx-mesa0/bookworm-backports
     - libglx0
-    - libglx-mesa0
     - libgme0
     - libgmp10
     - libgnutls30
@@ -213,16 +224,16 @@ mmdebstrap:
     - libgpm2
     - libgraphene-1.0-0
     - libgraphite2-3
+    - libgs-common
     - libgs10
     - libgs10-common
-    - libgs-common
     - libgsm1
     - libgssapi-krb5-2
     - libgssdp-1.6-0
-    - libgstreamer1.0-0
     - libgstreamer-gl1.0-0
     - libgstreamer-plugins-bad1.0-0
     - libgstreamer-plugins-base1.0-0
+    - libgstreamer1.0-0
     - libgtk-3-0
     - libgtk-3-bin
     - libgtk-3-common
@@ -240,8 +251,8 @@ mmdebstrap:
     - libiec61883-0
     - libijs-0.35
     - libimath-3-1-29
-    - libinput10
     - libinput-bin
+    - libinput10
     - libinstpatch-1.0-2
     - libip4tc2
     - libjack-jackd2-0
@@ -253,8 +264,8 @@ mmdebstrap:
     - libjson-glib-1.0-0
     - libjson-glib-1.0-common
     - libjxl0.7
-    - libjxr0
     - libjxr-tools
+    - libjxr0
     - libk5crypto3
     - libkate1
     - libkeyutils1
@@ -310,8 +321,8 @@ mmdebstrap:
     - libnss3
     - libnuma1
     - libogg0
-    - libopenal1
     - libopenal-data
+    - libopenal1
     - libopenexr-3-1-30
     - libopenh264-7
     - libopenjp2-7
@@ -320,16 +331,16 @@ mmdebstrap:
     - libopus0
     - liborc-0.4-0
     - libp11-kit0
-    - libpam0g
     - libpam-modules
     - libpam-modules-bin
     - libpam-runtime
     - libpam-systemd
+    - libpam0g
     - libpango-1.0-0
     - libpangocairo-1.0-0
     - libpangoft2-1.0-0
-    - libpaper1
     - libpaper-utils
+    - libpaper1
     - libparted2
     - libpcre2-8-0
     - libpgm-5.3-0
@@ -345,9 +356,9 @@ mmdebstrap:
     - libproxy1v5
     - libpsl5
     - libpulse0
+    - libpython3-stdlib
     - libpython3.11-minimal
     - libpython3.11-stdlib
-    - libpython3-stdlib
     - libqrencode4
     - librabbitmq4
     - libraptor2-0
@@ -367,10 +378,10 @@ mmdebstrap:
     - libsdl2-2.0-0
     - libseccomp2
     - libselinux1
-    - libsemanage2
     - libsemanage-common
-    - libsensors5
+    - libsemanage2
     - libsensors-config
+    - libsensors5
     - libsepol2
     - libserd-0-0
     - libshine3
@@ -384,10 +395,10 @@ mmdebstrap:
     - libsodium23
     - libsord-0-0
     - libsoundtouch1
-    - libsoup2.4-1
-    - libsoup2.4-common
     - libsoup-3.0-0
     - libsoup-3.0-common
+    - libsoup2.4-1
+    - libsoup2.4-common
     - libsoxr0
     - libspa-0.2-modules
     - libspandsp2
@@ -398,28 +409,28 @@ mmdebstrap:
     - libsrt1.5-gnutls
     - libsrtp2-1
     - libss2
-    - libssh2-1
     - libssh-gcrypt-4
+    - libssh2-1
     - libssl3
     - libstdc++6
     - libsvtav1enc1
     - libswresample4
     - libswscale6
-    - libsystemd0
     - libsystemd-shared
+    - libsystemd0
     - libtag1v5
     - libtag1v5-vanilla
     - libtasn1-6
     - libtext-charwidth-perl
     - libtext-iconv-perl
     - libtext-wrapi18n-perl
-    - libthai0
     - libthai-data
+    - libthai0
     - libtheora0
     - libtiff6
     - libtinfo6
-    - libtirpc3
     - libtirpc-common
+    - libtirpc3
     - libtwolame0
     - libudev1
     - libudfread0
@@ -429,11 +440,11 @@ mmdebstrap:
     - libuuid1
     - libv4l-0
     - libv4lconvert0
-    - libva2
     - libva-drm2
     - libva-x11-2
-    - libvdpau1
+    - libva2
     - libvdpau-va-gl1
+    - libvdpau1
     - libvidstab1.1
     - libvisual-0.4-0
     - libvo-aacenc0
@@ -443,8 +454,8 @@ mmdebstrap:
     - libvorbisfile3
     - libvpx7
     - libvulkan1
-    - libwacom9
     - libwacom-common
+    - libwacom9
     - libwavpack1
     - libwayland-client0
     - libwayland-cursor0
@@ -464,7 +475,6 @@ mmdebstrap:
     - libx264-164
     - libx265-199
     - libxau6
-    - libxcb1
     - libxcb-composite0
     - libxcb-dri3-0
     - libxcb-glx0
@@ -475,6 +485,7 @@ mmdebstrap:
     - libxcb-sync1
     - libxcb-xfixes0
     - libxcb-xkb1
+    - libxcb1
     - libxcomposite1
     - libxcursor1
     - libxdamage1
@@ -483,8 +494,8 @@ mmdebstrap:
     - libxfixes3
     - libxi6
     - libxinerama1
-    - libxkbcommon0
     - libxkbcommon-x11-0
+    - libxkbcommon0
     - libxkbfile1
     - libxml2
     - libxrandr2
@@ -505,8 +516,8 @@ mmdebstrap:
     - libzimg2
     - libzmq5
     - libzstd1
-    - libzvbi0
     - libzvbi-common
+    - libzvbi0
     - libzxing2
     - linux-base
     - locales
@@ -515,16 +526,16 @@ mmdebstrap:
     - logsave
     - mawk
     - media-types
-    - mesa-libgallium
-    - mesa-va-drivers
-    - mesa-vdpau-drivers
-    - mesa-vulkan-drivers
+    - mesa-libgallium/bookworm-backports
+    - mesa-va-drivers/bookworm-backports
+    - mesa-vdpau-drivers/bookworm-backports
+    - mesa-vulkan-drivers/bookworm-backports
     - mount
     - nano
     - ncurses-base
     - ncurses-bin
-    - netbase
     - net-tools
+    - netbase
     - nftables
     - ocl-icd-libopencl1
     - openssl
@@ -536,9 +547,9 @@ mmdebstrap:
     - procps
     - publicsuffix
     - python3
+    - python3-minimal
     - python3.11
     - python3.11-minimal
-    - python3-minimal
     - readline-common
     - sed
     - sensible-utils

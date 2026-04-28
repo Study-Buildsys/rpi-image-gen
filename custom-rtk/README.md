@@ -8,4 +8,9 @@ rpi-image-gen build -S custom-rtk -c config/debian-image.yaml -B ./output_rtk_ro
 #                     [-f]             setup, build filesystem, skip image generation.
 #                     [-i]             setup, skip building filesystem, generate image(s).
 mkdir work-rtk
-rpi-image-gen build -S custom-rtk -c config/debian-image.yaml -B ./work-rtk  2>&1 | tee log-rpi-image-gen-build-debian-image.log
+sudo ./rpi-image-gen build -S custom-rtk -c debian-image.yaml -B ./work-rtk  2>&1 | tee log-rpi-image-gen-build-debian-image.log
+sudo umount -l <sys>
+
+# NOTE:
+- 只有這個沒有 mesa-libgallium
+- libglapi-mesa - 實際上是被整合到 mesa-libgallium 中 (Provides: libglapi-mesa)，非真正缺少。
